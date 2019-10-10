@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Comparator;
 
 /**
  * This class is part of the MyToDo application.
@@ -15,8 +15,6 @@ import java.util.Date;
 
 public class ToDoList {
     private ArrayList<Task> tasks;
-    private int completeTasks;
-    private int incompleteTasks;
 
     /**
      * Create a todo list.
@@ -28,9 +26,86 @@ public class ToDoList {
     /**
      * Inserts a task in the list.
      * @param newTask The task to be added to the list.
-     * @return true If the add operation was successful, false otherwise.
      */
-    public boolean insertTask(Task newTask){
-        return tasks.add(newTask);
+    public void insertTask(Task newTask){
+        tasks.add(newTask);
+    }
+
+    /**
+     * Insert a list of tasks in the list.
+     * @param newList The task to be added to the list.
+     */
+    public void insertList(ArrayList<Task> newList){
+        tasks.addAll(newList);
+    }
+
+    /**
+     * Returns the list of tasks.
+     * @return an ArrayList with all the tasks in the todolist.
+     */
+    public ArrayList<Task> getListOfTasks(){
+        return tasks;
+    }
+
+    /**
+     * Shows all tasks in the list.
+     */
+    public void showTasks(){
+        tasks.stream()
+                .map(Task::toString)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * Counts the number of tasks done or undone.
+     * @param status specifies what tasks to be counted.
+     * @return number of tasks done or undone according to parameter input.
+     */
+    public long countTasksStatus(boolean status){
+        return tasks.stream()
+                .filter(task -> task.getStatus() == status)
+                .count();
+    }
+
+    /**
+     * Sorts and shows all tasks by project.
+     */
+    public void sortTasksByProject(){
+
+        tasks.stream()
+                .sorted(Comparator.comparing(Task::getProject))
+                .map(Task::toString)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * Sorts and shows all tasks by date.
+     */
+    public void sortTasksByDate(){
+
+        tasks.stream()
+                .sorted(Comparator.comparing(Task::getDueDate))
+                .map(Task::toString)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * Filters by project and shows all tasks according to user input.
+     */
+    public void filterTasksByProject(String filterString){
+        tasks.stream()
+                .filter(task -> task.getProject().equals(filterString))
+                .map(Task::toString)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * Filters by project and shows all tasks according to user input.
+     */
+    public void filterTasksByDate(String filterString){
+        tasks.stream()
+                .filter(task -> task.getDueDate().equals(filterString))
+                .map(Task::toString)
+                .forEach(System.out::println);
     }
 }

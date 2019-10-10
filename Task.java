@@ -12,22 +12,37 @@ import java.time.LocalDate;
  */
 public class Task {
     private String title;
-    private LocalDate dueDate; //LocalDate represents a date in ISO format (yyyy-MM-dd) without time
     private String project;
+    private LocalDate dueDate; //LocalDate represents a date in ISO format (yyyy-MM-dd) without time
     private boolean status;
 
     /**
      * Create an undone Task based on user input.
      *
      * @param title The task's title.
-     * @param dueDate The task's due date.
      * @param project The task's project.
+     * @param dueDate The task's due date.
      */
-    public Task(String title, LocalDate dueDate, String project){
+    public Task(String title, String project, LocalDate dueDate){
         this.title = title;
-        this.dueDate = dueDate;
         this.project = project;
+        this.dueDate = dueDate;
         status = false;
+    }
+
+
+    /**
+     * Create a Task based on user input.
+     *
+     * @param title The task's title.
+     * @param project The task's project.
+     * @param dueDate The task's due date.
+     */
+    public Task(String title, String project, LocalDate dueDate, boolean status){
+        this.title = title;
+        this.project = project;
+        this.dueDate = dueDate;
+        this.status = false;
     }
 
     /**

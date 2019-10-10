@@ -7,4 +7,4 @@ If the user quits the application, the current task list is saved to a file. The
 
 
 ## Contributing
-This is an individual project, thus, mabmalia is the only contributor.
+This is an individual project of Miguel Mália.

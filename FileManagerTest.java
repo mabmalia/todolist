@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,10 +7,12 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class FileManagerTest {
 
     @Test
-    public void FolderExistsTrue(){
+    public void folderExistsTrue(){
 
         FileManager fileManager = new FileManager();
 
@@ -21,7 +22,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void WriteFileTrue(){
+    public void writeFileTrue(){
 
         //create a date and a list with some tasks
         LocalDate date = Utility.convertDate("2020-10-20");
@@ -47,4 +48,7 @@ public class FileManagerTest {
         assertTrue(Files.exists(Paths.get(fileManager.toString())));
         assertTrue(fileSize > 0);
     }
+
+    @Test
+    public void fileContentEqualsToWroteTasks(){}
 }

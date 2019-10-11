@@ -1,10 +1,14 @@
-# todo list
-This is a todo list application. The application uses a text based user interface via the command-line.
-The application allows a user to create new tasks (with a title, due date and an assigned project) and edit them (update, mark as done, remove).
-If the user quits the application, the current task list is saved to a file. The application is restarted with the former state restored.
+# Title
+<p>This is a simple todo list application.</p>
+<p>The application uses a text based user interface via the command-line.</p>
 
-## Usage
+## Description
 
+<p>The application allows a user to create new tasks (assign a title, due date and a project) and edit them (update title or project, mark as done, remove).</p>
+<p>If the user quits the application, the current list of tasks is saved to a csv file. The application is restarted with the former state restored.</p>
+
+## Motivation
+<p>This is an individual project for a software development academy.</p>
 
 ## Contributing
-Miguel Mália.
+<p>Miguel Mália.</p>

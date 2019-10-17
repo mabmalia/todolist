@@ -1,3 +1,5 @@
+package menu;
+
 /**
  * A class representing the Main Menu of the application.
  * Extends Menu class.
@@ -6,20 +8,25 @@
  * @version 2019.10.16
  */
 public class MainMenu extends Menu {
+    private int numberTasksDone;
+    private int numberTasksInProgress;
 
     /**
-     * Constructor of the class.
+     * Constructor of the MainMenu class.
+     * Creates a to do list
      */
-    public MainMenu() {
+    public MainMenu(int numberTasksDone, int numberTasksInProgress) {
         super();
+        this.numberTasksDone = numberTasksDone;
+        this.numberTasksInProgress = numberTasksInProgress;
     }
 
     /**
      * Print out the main menu for the user.
      */
     public void printMenu() {
-        System.out.println(">> You have " + countsTasks(false) + " tasks todo and "
-                                            + countsTasks(true) +" tasks done.");
+        System.out.println(">> You have " + numberTasksInProgress + " tasks todo and "
+                                            + numberTasksDone +" tasks done.");
         System.out.println(">> Pick an option:");
         System.out.println(">> (1) Show Task List (by date or project)");
         System.out.println(">> (2) Add New Task");
@@ -35,9 +42,13 @@ public class MainMenu extends Menu {
     public boolean processMenu() {
         boolean wantToQuit = false;
 
+        //print main menu
+        printMenu();
+
         switch (getInput()) {
             case "1":
-                //showTaskInput();
+                Menu showMenu = new ShowMenu();
+                showMenu.processMenu();
                 break;
 
             case "2":
@@ -49,7 +60,6 @@ public class MainMenu extends Menu {
                 break;
 
             case "4":
-                saveToDoList();
                 wantToQuit = true;
                 break;
             default:

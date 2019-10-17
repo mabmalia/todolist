@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import task.Task;
+import task.TaskFields;
+
 /**
  * A class to read and write CSV-style records of tasks.
  *

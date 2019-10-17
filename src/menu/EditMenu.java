@@ -1,3 +1,5 @@
+package menu;
+
 /**
  * A class representing the Add Menu of the application.
  * Extends Menu class.

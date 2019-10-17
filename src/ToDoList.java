@@ -2,6 +2,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import task.Task;
+
 /**
  * This class is part of the MyToDo application.
  * MyToDo is a very simple, text based todo list application.
@@ -57,7 +59,7 @@ public class ToDoList {
      * Returns the size of the list.
      * @return a int with the size.
      */
-    public int getListSize(){
+    public int getSize(){
         return tasks.size();
     }
 
@@ -84,10 +86,10 @@ public class ToDoList {
      * @param status specifies what tasks to be counted.
      * @return number of tasks done or to do according to parameter input.
      */
-    public long countTasksByStatus(boolean status){
-        return tasks.stream()
-                .filter(task -> task.getStatus() == status)
-                .count();
+    public int countTasksByStatus(boolean status){
+        return Math.toIntExact(tasks.stream()
+                                .filter(task -> task.getStatus() == status)
+                                .count());
     }
 
     /**

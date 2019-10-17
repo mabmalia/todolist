@@ -1,26 +1,26 @@
+package menu;
+
 /**
  * A class representing the Show Menu of the application.
  * Extends Menu class.
  *
  * @author  Miguel Mália
  * @version 2019.10.16
- *//*
+ */
 
 public class ShowMenu extends Menu{
 
-    */
-/**
-     * Constructor of the class.
-     *//*
+    /**
+     * Constructor of the ShowMenu class.
+     */
 
     public ShowMenu() {
         super();
     }
 
-    */
-/**
+    /**
      * Print out the show menu for the user.
-     *//*
+     */
 
     public void printMenu() {
         System.out.println(">> Pick an option:");
@@ -30,29 +30,28 @@ public class ShowMenu extends Menu{
         System.out.println(">> ");
     }
 
-    */
-/**
-     * Sequence of actions that allows user to show the todo list.
-     *//*
+    /**
+     * Sequence of actions that allows the user to see the todo list,
+     * sorted by date or project.
+     */
 
-    public void processMenu(){
-
+    public boolean processMenu(){
         //exit method if the todo list is empty
-        if(currentTasks.getListSize() == 0){
+        if(getListSize() == 0){
             System.out.println(">> The todo list is empty.");
             //For users to see the last message before returning to main menu
             printReturnToMenu();
-            return;
+            return false;
         }
 
         boolean wantToQuit = false;
 
         while(!wantToQuit) {
 
-            //print show task list options
-            printShowMenu();
+            //print menu with show list options
+            printMenu();
 
-            switch (reader.getInput()) {
+            switch (getInput()) {
                 case "0":
                     wantToQuit = true;
                     break;
@@ -74,6 +73,7 @@ public class ShowMenu extends Menu{
                     break;
             }
         }
+        return true;
     }
 }
-*/
+

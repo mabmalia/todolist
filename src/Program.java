@@ -1,3 +1,5 @@
+import menu.MainMenu;
+import menu.Menu;
 /**
  *  This class is the main class of the MyToDo application.
  *  MyToDo is a very simple, text based todo list application.
@@ -14,21 +16,21 @@
  */
 
 public class Program {
-    private Menu mainMenu;
     private ToDoList currentTasks;
 
     /**
-     * Create a todo list and an input reader.
+     * Constructor of Program class.
+     * Creates a new Main Menu.
      */
     public Program() {
         currentTasks = new ToDoList();
-        mainMenu = new MainMenu();
     }
 
     /**
      *  Main routine. Loops until user quits the application.
      */
     public void routine() {
+        //prints welcome message
         System.out.println(">> Welcome to MyToDo!");
 
         /*
@@ -37,11 +39,23 @@ public class Program {
          */
         boolean finished = false;
         while (! finished) {
-            mainMenu.printMenu();
+
+            //creates a menu view and inserts the list status in it to be displayed
+            Menu mainMenu = new MainMenu(currentTasks.countTasksByStatus(false), currentTasks.countTasksByStatus(true));
 
             finished = mainMenu.processMenu();
         }
+
+        //Saves current to do list in a file
+        currentTasks.insertTasksToFile();
+
         System.out.println("Thank you for using MyToDo.\nNow go and do some tasks!");
+    }
+
+    /**
+     *  Sequence of actions that processes user input.
+     */
+    public void processUserInput() {
     }
 
     /**

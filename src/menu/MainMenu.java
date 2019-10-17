@@ -13,12 +13,50 @@ public class MainMenu extends Menu {
 
     /**
      * Constructor of the MainMenu class.
-     * Creates a to do list
+     * Creates to fields to count the number of tasks done and in progress.
      */
-    public MainMenu(int numberTasksDone, int numberTasksInProgress) {
+    public MainMenu() {
         super();
+        this.numberTasksDone = 0;
+        this.numberTasksInProgress = 0;
+    }
+
+    /**
+     * Constructor of the MainMenu class.
+     * @param numberTasksDone number of tasks done.
+     * @param numberTasksInProgress number of tasks in progress.
+     */
+    public void updateCounters(int numberTasksDone, int numberTasksInProgress) {
         this.numberTasksDone = numberTasksDone;
         this.numberTasksInProgress = numberTasksInProgress;
+    }
+
+    /**
+     * Go to Show or Edit menu if the todo list has items.
+     * @return code that translates user input in show menu.
+     */
+    public String showMenuIfNotEmpty(String menuOption) {
+        if((numberTasksDone + numberTasksInProgress) == 0){
+            System.out.println(">> The todo list is empty.");
+            //For users to see the message before returning to main menu
+            printReturnToMenu();
+            return "00";
+        }
+
+        String command = "00";
+        switch (menuOption){
+            case "1":
+                Menu showMenu = new ShowMenu();
+                command = showMenu.processMenu();
+                break;
+
+            case "3":
+                Menu editMenu = new EditMenu();
+                command = editMenu.processMenu();
+                break;
+        }
+
+        return command;
     }
 
     /**
@@ -37,35 +75,44 @@ public class MainMenu extends Menu {
 
     /**
      * Given a input in the main menu, process it.
-     * @return true If the input ends the application, false otherwise.
+     * @return user input.
      */
-    public boolean processMenu() {
-        boolean wantToQuit = false;
+    public String processMenu() {
+        String userInput = "00";
 
-        //print main menu
-        printMenu();
+        boolean quitMenu = false;
 
-        switch (getInput()) {
-            case "1":
-                Menu showMenu = new ShowMenu();
-                showMenu.processMenu();
-                break;
+        while(!quitMenu) {
 
-            case "2":
-                //addTaskInput();
-                break;
+            //print main menu
+            printMenu();
 
-            case "3":
-                //editTaskInput();
-                break;
+            switch (getInput()) {
+                case "1":
+                    userInput = showMenuIfNotEmpty("1");
+                    quitMenu = true;
+                    break;
 
-            case "4":
-                wantToQuit = true;
-                break;
-            default:
-                printInvalidCommand();
-                break;
+                case "2":
+                    userInput = "21";
+                    quitMenu = true;
+                    break;
+
+                case "3":
+                    userInput = showMenuIfNotEmpty("3");
+                    quitMenu = true;
+                    break;
+
+                case "4":
+                    userInput = "41";
+                    quitMenu = true;
+                    break;
+
+                default:
+                    printInvalidCommand();
+                    break;
+            }
         }
-        return wantToQuit;
+        return userInput;
     }
 }

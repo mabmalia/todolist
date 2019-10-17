@@ -1,5 +1,7 @@
 package menu;
 
+import utility.InputReader;
+
 /**
  * A class representing shared characteristics of Menus in the application.
  *
@@ -7,11 +9,11 @@ package menu;
  * @version 2019.10.16
  */
 public abstract class Menu {
-    private InputReader inputReader;
+    InputReader inputReader;
 
     /**
      * Constructor of Menu class.
-     * Creates a scanner.
+     * Creates an InputReader.
      */
     public Menu() {
         inputReader = new InputReader();
@@ -24,8 +26,9 @@ public abstract class Menu {
 
     /**
      * Given a input in the menu, process it.
+     * @return user input.
      */
-    abstract public boolean processMenu();
+    abstract public String processMenu();
 
     /**
      * Display invalid command message.
@@ -41,14 +44,13 @@ public abstract class Menu {
      * Prints a message and waits for user to input an Enter command.
      */
     protected void printReturnToMenu() {
-        System.out.println(">> Press Enter to return to previous menu.");
-        getInput();
+        inputReader.printReturnCommand();
     }
 
     /**
      * Reads user input.
      */
     protected String getInput() {
-        return inputReader.getInput();
+        return inputReader.readInput();
     }
 }

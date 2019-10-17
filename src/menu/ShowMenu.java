@@ -13,7 +13,6 @@ public class ShowMenu extends Menu{
     /**
      * Constructor of the ShowMenu class.
      */
-
     public ShowMenu() {
         super();
     }
@@ -21,7 +20,6 @@ public class ShowMenu extends Menu{
     /**
      * Print out the show menu for the user.
      */
-
     public void printMenu() {
         System.out.println(">> Pick an option:");
         System.out.println(">> (0) Return to main menu");
@@ -33,39 +31,32 @@ public class ShowMenu extends Menu{
     /**
      * Sequence of actions that allows the user to see the todo list,
      * sorted by date or project.
+     * @return user input.
      */
+    public String processMenu(){
+        String userInput = "00";
 
-    public boolean processMenu(){
-        //exit method if the todo list is empty
-        if(getListSize() == 0){
-            System.out.println(">> The todo list is empty.");
-            //For users to see the last message before returning to main menu
-            printReturnToMenu();
-            return false;
-        }
+        boolean quitMenu = false;
 
-        boolean wantToQuit = false;
+        while(!quitMenu) {
 
-        while(!wantToQuit) {
-
-            //print menu with show list options
+            //print show menu
             printMenu();
 
             switch (getInput()) {
                 case "0":
-                    wantToQuit = true;
+                    userInput = "00";
+                    quitMenu = true;
                     break;
 
                 case "1":
-                    currentTasks.sortTasksByProject();
-                    printReturnToMenu();
-                    wantToQuit = true;
+                    userInput = "11";
+                    quitMenu = true;
                     break;
 
                 case "2":
-                    currentTasks.sortTasksByDate();
-                    printReturnToMenu();
-                    wantToQuit = true;
+                    userInput = "12";
+                    quitMenu = true;
                     break;
 
                 default:
@@ -73,7 +64,7 @@ public class ShowMenu extends Menu{
                     break;
             }
         }
-        return true;
+        return userInput;
     }
 }
 

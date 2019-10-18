@@ -33,7 +33,7 @@ public class EditMenu extends Menu {
      * @return user input.
      */
     public String processMenu(){
-        String userInput = "00";
+        String userInput = OptionCode.RETURN.toString();
 
         boolean quitMenu = false;
 
@@ -44,22 +44,22 @@ public class EditMenu extends Menu {
 
             switch (getInput()) {
                 case "0":
-                    userInput = "00";
+                    userInput = OptionCode.RETURN.toString();
                     quitMenu = true;
                     break;
 
                 case "1":
-                    userInput = "31";
+                    userInput = OptionCode.EDIT.toString();
                     quitMenu = true;
                     break;
 
                 case "2":
-                    userInput = "32";
+                    userInput = OptionCode.DONE.toString();
                     quitMenu = true;
                     break;
 
                 case "3":
-                    userInput = "33";
+                    userInput = OptionCode.REMOVE.toString();
                     quitMenu = true;
                     break;
 

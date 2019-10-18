@@ -6,7 +6,7 @@ package menu;
  * @author  Miguel Mälia
  * @version 2019.10.10
  */
-public enum OptionCode {
+public enum MenuOptionCode {
     // A code for each option input in the application menus
     RETURN("00"),
     SHOW_BY_PROJECT("11"),
@@ -23,7 +23,7 @@ public enum OptionCode {
      * Initialise with the corresponding option code.
      * @param menuCommand The code of the user input.
      */
-    OptionCode(String menuCommand) {
+    MenuOptionCode(String menuCommand) {
         this.menuCommand = menuCommand;
     }
 

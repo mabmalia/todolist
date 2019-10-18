@@ -40,10 +40,10 @@ public class MainMenu extends Menu {
             System.out.println(">> The todo list is empty.");
             //For users to see the message before returning to main menu
             printReturnToMenu();
-            return OptionCode.RETURN.toString();
+            return MenuOptionCode.RETURN.toString();
         }
 
-        String command = OptionCode.RETURN.toString();
+        String command = MenuOptionCode.RETURN.toString();
         switch (menuOption){
             case "1":
                 Menu showMenu = new ShowMenu();
@@ -78,7 +78,7 @@ public class MainMenu extends Menu {
      * @return user input.
      */
     public String processMenu() {
-        String userInput = OptionCode.RETURN.toString();
+        String userInput = MenuOptionCode.RETURN.toString();
 
         boolean quitMenu = false;
 
@@ -94,7 +94,7 @@ public class MainMenu extends Menu {
                     break;
 
                 case "2":
-                    userInput = OptionCode.ADD.toString();
+                    userInput = MenuOptionCode.ADD.toString();
                     quitMenu = true;
                     break;
 
@@ -104,7 +104,7 @@ public class MainMenu extends Menu {
                     break;
 
                 case "4":
-                    userInput = OptionCode.QUIT.toString();
+                    userInput = MenuOptionCode.QUIT.toString();
                     quitMenu = true;
                     break;
 

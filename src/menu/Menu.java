@@ -34,7 +34,7 @@ public abstract class Menu {
      * Display invalid command message.
      */
     protected void printInvalidCommand() {
-        System.out.println("You typed an invalid command. Press Enter to continue.");
+        System.out.println("You typed an invalid command. Press (Enter) to continue.");
         System.out.println(">> ");
         getInput();
     }

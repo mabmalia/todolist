@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import task.Task;
-import utility.Utility;
 
 /**
  * This class is part of the MyToDo application.
@@ -36,8 +35,8 @@ public class ToDoList {
      * @param project The task project.
      * @param dueDate The task due date.
      */
-    public void insertTask(String title, String project, String dueDate){
-        Task task = new Task(title, project, Utility.convertDate(dueDate));
+    public void insertTask(String title, String project, LocalDate dueDate){
+        Task task = new Task(title, project, dueDate);
         tasks.add(task);
     }
 
@@ -116,11 +115,11 @@ public class ToDoList {
     }
 
     /**
-     * Modify a specific task.
+     * Edit a specific task.
      * @param index of the task.
      * @param title of the task.
      */
-    public void modifyTaskTitle(int index, String title){
+    public void editTaskTitle(int index, String title){
         tasks.get(index).setTitle(title);
     }
 
@@ -129,7 +128,7 @@ public class ToDoList {
      * @param index of the task.
      * @param project of the task.
      */
-    public void modifyTaskProject(int index, String project){
+    public void editTaskProject(int index, String project){
         tasks.get(index).setProject(project);
     }
 
@@ -138,15 +137,16 @@ public class ToDoList {
      * @param index of the task.
      * @param dueDate of the task.
      */
-    public void modifyTaskDueDate(int index, LocalDate dueDate){
+    public void editTaskDueDate(int index, LocalDate dueDate){
         tasks.get(index).setDueDate(dueDate);
     }
 
     /**
      * Modify a specific task.
      * @param index of the task.
+     * @param status of the task.
      */
-    public void modifyTaskStatusToDone(int index){
-        tasks.get(index).setStatus(true);
+    public void editTaskStatus(int index, boolean status){
+        tasks.get(index).setStatus(status);
     }
 }

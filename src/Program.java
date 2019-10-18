@@ -81,9 +81,8 @@ public class Program {
                 break;
 
             case "21":
-                //Adds a new task
-                addTask(enterTaskDetails("21"));
-                System.out.println("Task was successfully created.");
+                //Add a new task
+                addTask(enterTaskDetails(MenuOptionCode.ADD.toString()));
                 inputReader.printReturnCommand();
                 break;
 
@@ -91,8 +90,7 @@ public class Program {
                 //Edit the details of a task
                 index = selectTask();
                 if (index != -1) {
-                    editTask(enterTaskDetails("21"), index);
-                    System.out.println("Task was successfully edited.");
+                    editTask(enterTaskDetails(MenuOptionCode.EDIT.toString()), index);
                     inputReader.printReturnCommand();
                 }
                 break;
@@ -101,7 +99,7 @@ public class Program {
                 //marks a task as done
                 index = selectTask();
                 if (index != -1) {
-                    currentTasks.modifyTaskStatusToDone(index);
+                    currentTasks.editTaskStatus(index, true);
                     System.out.println("Task was marked as done.");
                     inputReader.printReturnCommand();
                 }
@@ -138,11 +136,11 @@ public class Program {
             System.out.println("Select a task by inputting its index. Or press (0) to return to main menu.");
             String userInput = inputReader.readInput();
             if(userInput.equals("0")){
-                return index;
+                return -1;
             }
 
             index = utility.Utility.convertIndexToInt(userInput) -1;
-            if (index == -1 || index > currentTasks.getSize() && index < 1) {
+            if (index >= currentTasks.getSize() || index < 0) {
                 System.out.println("Invalid index. Please try again.");
             }
             else {
@@ -163,8 +161,8 @@ public class Program {
     private String[] enterTaskDetails(String userInput){
         /*
          An array with a question for each field of a task
-         and other with the user input for that question.
-         Enum is used to know the index of each task field.
+         and other to store the user input for that question.
+         An enum is used to know the index of each task field.
          */
         String[] taskQuestions = new String[TaskFields.NUMBER_OF_FIELDS.toInt()-1];
         String[] taskDetails = new String[TaskFields.NUMBER_OF_FIELDS.toInt()-1];
@@ -175,14 +173,14 @@ public class Program {
 
         //If a task is being edited, then the user can skip the fields that don't want to edit
         //by pressing Enter (empty field)
-        if (userInput.equals("31")){
-            System.out.println("Press Enter to skip a field not to be edit.");
+        if (userInput.equals(MenuOptionCode.EDIT.toString())){
+            System.out.println("Press (Enter) to skip a field that doesn't need to be edited.");
         }
 
         //Print insert statements and collect user input
-        //Does not allow user to insert 0 as task title or project - Need to be improved!
         for(int index = 0; index < taskQuestions.length; index++){
             boolean fieldIsValid = false;
+            String quit = ""; //backup for user to be able to quit add or edit mode
 
             while(!fieldIsValid){
                 System.out.println(taskQuestions[index]);
@@ -191,16 +189,28 @@ public class Program {
 
                 //Check if field is empty or invalid
                 //If editing a task, the field can be empty
-                if(input.isEmpty() && !userInput.equals("31")){
-                    System.out.println(">> Field cannot be empty. Try again or press (0) to return to main menu.");
-                }
-                else if(TaskFields.DUE_DATE.toInt() == index
-                        && !Utility.isValidDate(input)){
-                    System.out.println(">> Date with invalid format. Try again or press (0) to return to main menu.");
-                }
-                else{
+                if(input.isEmpty() && userInput.equals(MenuOptionCode.EDIT.toString())){
                     taskDetails[index] = input;
                     fieldIsValid = true;
+                }
+                else if(input.isEmpty()){
+                    System.out.println(">> Field cannot be empty.");
+                    System.out.println(">> Press (Enter) to continue or (0) to return to main menu.");
+                    quit = inputReader.readInput();
+                }
+                else if(TaskFields.DUE_DATE.toInt() == index && !Utility.isValidDate(input)){
+                    System.out.println(">> Date with invalid format.");
+                    System.out.println(">> Press (Enter) to continue or (0) to return to main menu.");
+                    quit = inputReader.readInput();
+                }
+                else{ //For not empty fields with valid date (if array index matches date enum index)
+                    taskDetails[index] = input;
+                    fieldIsValid = true;
+                }
+
+                //backup for user to be able to quit add or edit mode menu
+                if(quit.equals("0")){
+                    return null;
                 }
             }
         }
@@ -212,11 +222,18 @@ public class Program {
      * @param details an array with the title, project and due date of the task.
      */
     private void addTask (String[] details){
-
         //Create a task and insert it in the todo list
-        currentTasks.insertTask(details[TaskFields.TITLE.toInt()],
-                details[TaskFields.PROJECT.toInt()],
-                details[TaskFields.DUE_DATE.toInt()]);
+        // if the details are not null
+        if(details != null){
+            currentTasks.insertTask(details[TaskFields.TITLE.toInt()],
+                    details[TaskFields.PROJECT.toInt()],
+                    Utility.convertDate(details[TaskFields.DUE_DATE.toInt()]));
+
+            System.out.println("Task was successfully created.");
+        }
+        else{
+            System.out.println("A new task was not created.");
+        }
     }
 
     /**
@@ -225,7 +242,26 @@ public class Program {
      * @param index the index of the task to be edited.
      */
     private void editTask (String[] details, int index){
+        //modify a task in the todo list
+        // if the details are not null
+        if(details != null){
+            for(int iteration = 0; iteration < details.length; iteration++){
+                if(iteration == TaskFields.TITLE.toInt() && !details[iteration].equals("")){
+                    currentTasks.editTaskTitle(index, details[iteration]);
+                }
+                else if(iteration == TaskFields.PROJECT.toInt() && !details[iteration].equals("")){
+                    currentTasks.editTaskProject(index, details[iteration]);
+                }
+                else if(iteration == TaskFields.DUE_DATE.toInt() && !details[iteration].equals("")){
+                    currentTasks.editTaskDueDate(index, Utility.convertDate(details[iteration]));
+                }
+            }
 
+            System.out.println("Task was successfully edited.");
+        }
+        else{
+            System.out.println("Task was not edited.");
+        }
     }
 
     /**

@@ -32,7 +32,7 @@ public class FileManagerTest {
         listSample.add(task2);
 
         //write tasks to file
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager("test_resources/");
         fileManager.writeToCSV(listSample);
 
         //Check if file is empty
@@ -50,7 +50,7 @@ public class FileManagerTest {
     @Test
     public void fileContentEqualToTasksWrote(){
         //Create a list with tasks read from file
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager("test_resources/");
         ArrayList<Task> listSample = new ArrayList<>(fileManager.ReadFromCSV());
 
         assertEquals(2, listSample.size());
@@ -64,7 +64,7 @@ public class FileManagerTest {
 
     @Test
     public void handleCommaCharacterTrue(){
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager("test_resources/");
         String testHandleTitle = null;
         try{
             Method method = FileManager.class.getDeclaredMethod("handleSpecialCharacters", String.class);

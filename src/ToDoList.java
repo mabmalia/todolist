@@ -25,7 +25,7 @@ public class ToDoList {
      */
     public ToDoList(){
         tasks = new ArrayList<>();
-        fileManager = new FileManager();
+        fileManager = new FileManager("resources/");
         tasks.addAll(fileManager.ReadFromCSV());
     }
 

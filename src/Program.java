@@ -68,34 +68,34 @@ public class Program {
         int index;
 
         switch (userInput) {
-            case "11":
+            case MenuOptionCode.SHOW_BY_PROJECT:
                 //Sort list by project
                 currentTasks.sortTasksByProject();
                 inputReader.printReturnCommand();
                 break;
 
-            case "12":
+            case MenuOptionCode.SHOW_BY_DATE:
                 //Sort list by date
                 currentTasks.sortTasksByDate();
                 inputReader.printReturnCommand();
                 break;
 
-            case "21":
+            case MenuOptionCode.ADD:
                 //Add a new task
-                addTask(enterTaskDetails(MenuOptionCode.ADD.toString()));
+                addTask(enterTaskDetails(MenuOptionCode.ADD));
                 inputReader.printReturnCommand();
                 break;
 
-            case "31":
+            case MenuOptionCode.EDIT:
                 //Edit the details of a task
                 index = selectTask();
                 if (index != -1) {
-                    editTask(enterTaskDetails(MenuOptionCode.EDIT.toString()), index);
+                    editTask(enterTaskDetails(MenuOptionCode.EDIT), index);
                     inputReader.printReturnCommand();
                 }
                 break;
 
-            case "32":
+            case MenuOptionCode.DONE:
                 //marks a task as done
                 index = selectTask();
                 if (index != -1) {
@@ -105,7 +105,7 @@ public class Program {
                 }
                 break;
 
-            case "33":
+            case MenuOptionCode.REMOVE:
                 //remove a task
                 index = selectTask();
                 if (index != -1){
@@ -115,7 +115,7 @@ public class Program {
                 }
                 break;
 
-            case "41":
+            case MenuOptionCode.QUIT:
                 return true;
         }
         return false;
@@ -135,6 +135,7 @@ public class Program {
         while (!invalidIndex){
             System.out.println("Select a task by inputting its index. Or press (0) to return to main menu.");
             String userInput = inputReader.readInput();
+
             if(userInput.equals("0")){
                 return -1;
             }
@@ -173,7 +174,7 @@ public class Program {
 
         //If a task is being edited, then the user can skip the fields that don't want to edit
         //by pressing Enter (empty field)
-        if (userInput.equals(MenuOptionCode.EDIT.toString())){
+        if (userInput.equals(MenuOptionCode.EDIT)){
             System.out.println("Press (Enter) to skip a field that doesn't need to be edited.");
         }
 
@@ -189,7 +190,7 @@ public class Program {
 
                 //Check if field is empty or invalid
                 //If editing a task, the field can be empty
-                if(input.isEmpty() && userInput.equals(MenuOptionCode.EDIT.toString())){
+                if(input.isEmpty() && userInput.equals(MenuOptionCode.EDIT)){
                     taskDetails[index] = input;
                     fieldIsValid = true;
                 }

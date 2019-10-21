@@ -34,7 +34,7 @@ public class ShowMenu extends Menu{
      * @return user input.
      */
     public String processMenu(){
-        String userInput = MenuOptionCode.RETURN.toString();
+        String userInput = MenuOptionCode.RETURN;
 
         boolean quitMenu = false;
 
@@ -45,17 +45,17 @@ public class ShowMenu extends Menu{
 
             switch (getInput()) {
                 case "0":
-                    userInput = MenuOptionCode.RETURN.toString();
+                    userInput = MenuOptionCode.RETURN;
                     quitMenu = true;
                     break;
 
                 case "1":
-                    userInput = MenuOptionCode.SHOW_BY_PROJECT.toString();
+                    userInput = MenuOptionCode.SHOW_BY_PROJECT;
                     quitMenu = true;
                     break;
 
                 case "2":
-                    userInput = MenuOptionCode.SHOW_BY_DATE.toString();
+                    userInput = MenuOptionCode.SHOW_BY_DATE;
                     quitMenu = true;
                     break;
 

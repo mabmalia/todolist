@@ -26,7 +26,7 @@ public class Program {
      * Creates a new Main Menu.
      */
     public Program() {
-        currentTasks = new ToDoList();
+        currentTasks = new ToDoList("resources/");
         inputReader = new InputReader();
     }
 

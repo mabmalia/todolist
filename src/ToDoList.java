@@ -23,10 +23,10 @@ public class ToDoList {
     /**
      * Create a todo list.
      */
-    public ToDoList(){
+    public ToDoList(String csvFilePath){
         tasks = new ArrayList<>();
-        fileManager = new FileManager("resources/");
-        tasks.addAll(fileManager.ReadFromCSV());
+        fileManager = new FileManager(csvFilePath);
+        tasks.addAll(fileManager.readFromCSV());
     }
 
     /**
@@ -78,7 +78,7 @@ public class ToDoList {
      * @return the details of the task as a String.
      */
     public String getSpecificTask(int index){
-        return "index = " + (index + 1) + tasks.get(index).toString();
+        return "index = " + (index + 1) + ", " + tasks.get(index).toString();
     }
 
     /**

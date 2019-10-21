@@ -58,7 +58,7 @@ public class FileManager {
      * Reads tasks from the CSV file and return them as a list.
      * @return an ArrayList with the tasks in the file.
      */
-    public ArrayList<Task> ReadFromCSV(){
+    public ArrayList<Task> readFromCSV(){
 
         // Create a Function that takes a line from the CSV file
         // and returns a Task.

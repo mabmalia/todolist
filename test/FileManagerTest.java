@@ -38,7 +38,7 @@ public class FileManagerTest {
         //Check if file is empty
         int fileSize;
         try{
-            fileSize = Files.readAllLines(Paths.get("resources/todolist.csv")).size();
+            fileSize = Files.readAllLines(Paths.get("test_resources/todolist.csv")).size();
         }
         catch(IOException e){
             fileSize = -1;
@@ -51,7 +51,7 @@ public class FileManagerTest {
     public void fileContentEqualToTasksWrote(){
         //Create a list with tasks read from file
         FileManager fileManager = new FileManager("test_resources/");
-        ArrayList<Task> listSample = new ArrayList<>(fileManager.ReadFromCSV());
+        ArrayList<Task> listSample = new ArrayList<>(fileManager.readFromCSV());
 
         assertEquals(2, listSample.size());
         assertEquals(title1, listSample.get(0).getTitle());

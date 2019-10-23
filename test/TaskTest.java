@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import task.Task;
+import utility.Utility;
 
 import java.time.LocalDate;
 
@@ -9,6 +11,7 @@ public class TaskTest {
     //create a date
     LocalDate date1 = Utility.convertDate("2020-10-20");
     LocalDate date2 = Utility.convertDate("2023-12-25");
+
     String title1 = "birlz";
     String title2 = "new title";
     String project1 = "birlz";

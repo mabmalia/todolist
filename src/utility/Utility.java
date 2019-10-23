@@ -1,3 +1,5 @@
+package utility;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -25,7 +27,7 @@ public final class Utility {
             date = LocalDate.parse(stringDate);
         }
         catch (DateTimeParseException e) {
-            date = null;
+            return null;
         }
 
         return date;

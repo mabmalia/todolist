@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import task.Task;
+import utility.Utility;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -30,13 +32,13 @@ public class FileManagerTest {
         listSample.add(task2);
 
         //write tasks to file
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager("test_resources/");
         fileManager.writeToCSV(listSample);
 
         //Check if file is empty
         int fileSize;
         try{
-            fileSize = Files.readAllLines(Paths.get("resources/todolist.csv")).size();
+            fileSize = Files.readAllLines(Paths.get("test_resources/todolist.csv")).size();
         }
         catch(IOException e){
             fileSize = -1;
@@ -48,8 +50,8 @@ public class FileManagerTest {
     @Test
     public void fileContentEqualToTasksWrote(){
         //Create a list with tasks read from file
-        FileManager fileManager = new FileManager();
-        ArrayList<Task> listSample = new ArrayList<>(fileManager.ReadFromCSV());
+        FileManager fileManager = new FileManager("test_resources/");
+        ArrayList<Task> listSample = new ArrayList<>(fileManager.readFromCSV());
 
         assertEquals(2, listSample.size());
         assertEquals(title1, listSample.get(0).getTitle());
@@ -62,7 +64,7 @@ public class FileManagerTest {
 
     @Test
     public void handleCommaCharacterTrue(){
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager("test_resources/");
         String testHandleTitle = null;
         try{
             Method method = FileManager.class.getDeclaredMethod("handleSpecialCharacters", String.class);

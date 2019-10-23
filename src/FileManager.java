@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import task.Task;
+import task.TaskFields;
+import utility.Utility;
+
 /**
  * A class to read and write CSV-style records of tasks.
  *
@@ -16,13 +20,15 @@ import java.util.stream.Collectors;
  * @version 2019.10.06
  */
 public class FileManager {
-    private static final String CSV_FILE_PATH = "resources/";   //File path.
     private static final String CSV_FILE_NAME = "todolist.csv";     //File name.
+    private String csvFilePath;   //File path.
 
     /**
      Creates a File Manager.
      */
-    public FileManager(){ }
+    public FileManager(String csvFilePath){
+        this.csvFilePath = csvFilePath;
+    }
 
     /**
      * Writes the todo list to a CSV file.
@@ -31,13 +37,13 @@ public class FileManager {
     public void writeToCSV(ArrayList<Task> tasks){
         //Check if directory exists
         //Otherwise create it
-        File directory = new File(CSV_FILE_PATH);
+        File directory = new File(csvFilePath);
         if (! directory.exists()){
             directory.mkdir();
         }
 
         //Overwrites existing file with new tasks
-        File csvFile = new File(CSV_FILE_PATH + CSV_FILE_NAME);
+        File csvFile = new File(csvFilePath + CSV_FILE_NAME);
         try (PrintWriter writeCSV = new PrintWriter(csvFile)) {
             tasks.stream()
                     .map(FileManager::convertToCSV)
@@ -52,7 +58,7 @@ public class FileManager {
      * Reads tasks from the CSV file and return them as a list.
      * @return an ArrayList with the tasks in the file.
      */
-    public ArrayList<Task> ReadFromCSV(){
+    public ArrayList<Task> readFromCSV(){
 
         // Create a Function that takes a line from the CSV file
         // and returns a Task.
@@ -80,7 +86,7 @@ public class FileManager {
         //Create an ArrayList of tasks
         ArrayList<Task> tasks;
         try {
-            tasks = Files.lines(Paths.get(CSV_FILE_PATH + CSV_FILE_NAME))
+            tasks = Files.lines(Paths.get(csvFilePath + CSV_FILE_NAME))
                     .map(createTask::apply)
                     .filter(task -> task != null)
                     .collect(Collectors.toCollection(ArrayList::new));

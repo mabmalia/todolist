@@ -139,8 +139,7 @@ index = 3, title = 'asfsg', project = 'alfa', date = 2022-09-13, status = 'Done'
 index = 4, title = 'birlz', project = 'X project', date = 2020-10-24, status = 'To do'
 Select a task by inputting its index. Or press (0) to return to main menu.
 ```
-
-The user must select the index of a task to be edited:
+And the user must select the index of a task to be edited:
 
 ```
 The following task was selected:

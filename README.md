@@ -13,7 +13,7 @@ This is an individual project for a software development academy.
 
 ## User Manual
 The user manual for this project can be found here:
-[User Manual](user_manual.md)
+[User Manual](USER_MANUAL.md)
 
 ## Class Diagram
 The class diagram for this project:

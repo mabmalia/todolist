@@ -11,6 +11,10 @@ If the user quits the application, the current list of tasks is saved to a csv f
 ## Motivation
 This is an individual project for a software development academy.
 
+## User Manual
+The user manual for this project can be found here:
+[User Manual](user_manual.md)
+
 ## Class Diagram
 The class diagram for this project:
 ![Class Diagram](class_diagram.png?raw=true "Class Diagram")

@@ -27,10 +27,14 @@ You typed an invalid command. Press (Enter) to continue.
 ```
 
 If the user presses:
-* (1) - a **show menu** is displayed; that menu allows the user to see the tasks in the todo list;
-* (2) - is able to add new tasks to the todo list;
-* (3) - an **edit menu** is displayed; that menu allows the user to edit an existing task;
-* (4) - the application saves the current list of tasks and quits.
+
+(1) - a **show menu** is displayed; that menu allows the user to see the tasks in the todo list;
+
+(2) - is able to add new tasks to the todo list;
+
+(3) - an **edit menu** is displayed; that menu allows the user to edit an existing task;
+
+(4) - the application saves the current list of tasks and quits.
 
 ## 2. Show menu
 If the user pressed (1), the show menu is displayed:
@@ -49,9 +53,12 @@ You typed an invalid command. Press (Enter) to continue.
 ```
 
 If the user presses:
-* (0) - the application returns to the main menu;
-* (1) - a list of tasks sorted by project is displayed;
-* (2) - a list of tasks sorted by date is displayed.
+
+(0) - the application returns to the main menu;
+
+(1) - a list of tasks sorted by project is displayed;
+
+(2) - a list of tasks sorted by date is displayed.
 
 ```
 title = 'birlz', project = 'projec "X"', date = 2020-10-25, status = 'Done'
@@ -129,8 +136,10 @@ You typed an invalid command. Press (Enter) to continue.
 ```
 
 If the user presses:
-* (0) - the application returns to the main menu;
-* (1) - a list of tasks with index is displayed:
+
+(0) - the application returns to the main menu;
+
+(1) - a list of tasks with index is displayed:
 
 ```
 index = 1, title = 'tintol', project = 'project', date = 2222-10-15, status = 'Done'
@@ -150,7 +159,7 @@ Press (Enter) to skip a field that doesn't need to be edited.
  
 The application will then request the user to insert a task title, a project title and a due date. Same sequence of actions as explained in `3. Add new task`. The only difference is that, during edit, a field can be skipped (not edited) by simply pressing Enter (leaving the field empty).
  
-* (2) - a list of tasks with index is displayed and the user must select the index of a task to be marked as done (as above); once an index was selected, the application changes the task status to "Done":
+(2) - a list of tasks with index is displayed and the user must select the index of a task to be marked as done (as above); once an index was selected, the application changes the task status to "Done":
 
 ```
 The following task was selected:
@@ -159,7 +168,7 @@ Task was marked as done.
 >> Press Enter to return to previous menu.
 ```
 
-* (3) - a list of tasks with index is displayed and the user must select the index of a task to be removed (as above); once an index was selected, the application removes the task from the todo list:
+(3) - a list of tasks with index is displayed and the user must select the index of a task to be removed (as above); once an index was selected, the application removes the task from the todo list:
 
 ```
 The following task was selected:
